@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export EPICS_CA_AUTO_ADDR_LIST=NO
+export EPICS_CA_ADDR_LIST="172.21.28.255"

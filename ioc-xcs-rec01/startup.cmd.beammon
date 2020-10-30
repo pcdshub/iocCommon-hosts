@@ -1,0 +1,11 @@
+#!/bin/sh
+
+/sbin/modprobe perle-serial
+
+## DAQ setup
+/sbin/modprobe pgpcard
+/usr/pgpcard/pgpcard
+/sbin/ifconfig eth1 172.21.25.121 netmask 255.255.255.0 mtu 9000
+/reg/g/pcds/dist/pds/tools/procmgr/procmgrd.init start
+
+/reg/g/pcds/pyps/apps/ioc/latest/initIOC

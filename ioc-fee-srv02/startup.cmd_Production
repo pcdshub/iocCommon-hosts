@@ -1,0 +1,18 @@
+#!/bin/bash 
+
+# Setup the IOC user environment
+source /reg/d/iocCommon/All/fee_env.sh
+
+# Start caRepeater
+$RUNUSER "$PROCSERV --logfile $IOC_DATA/$IOC_HOST/iocInfo/caRepeater.log --name caRepeater 30000 $CA_BIN/caRepeater"
+
+# Run the soft IOC startup.cmd scripts
+/reg/d/iocCommon/sioc/ioc-fee-nw01/startup.cmd
+
+/reg/d/iocCommon/sioc/ioc-fee-stream/startup.cmd
+
+/reg/d/iocCommon/sioc/ioc-fee-beam/startup.cmd
+
+/reg/d/iocCommon/sioc/ioc-fee-eurotherm/startup.cmd
+
+#/reg/d/iocCommon/sioc/ioc-xrt-vacuum/startup.cmd

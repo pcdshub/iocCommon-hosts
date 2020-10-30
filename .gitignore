@@ -1,0 +1,13 @@
+*.bak
+*.mcb
+*.old
+*.OLD
+*.*~
+*.*-old
+DEFUNCT/
+*.sw[op]
+core.*
+*.OLD_hugo
+*.cmd_example
+*.orig
+*.*OLD*
