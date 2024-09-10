@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Configure this host for gigE camera support
+# (Also supports jumbo BLD packets for spectromet
+source /reg/d/iocCommon/All/setup_gige.sh
+
 if [ ! -e /dev/era0 -a $UID -eq 0 ]
 then
   # Load EVR module on startup

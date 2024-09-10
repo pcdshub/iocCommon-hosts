@@ -1,8 +1,9 @@
 #!/bin/sh
 
 if [ ! -f /sys/bus/pci/drivers/uio_pci_generic/new_id ]; then
-    modprobe uio
-    insmod /lib/modules/`uname -r`/kernel/daq/uio_pci_generic.ko
+    #modprobe uio
+    #insmod /lib/modules/`uname -r`/kernel/daq/uio_pci_generic.ko
+    modprobe uio_pci_generic
 fi
 
 #this binds the uio_pci_generic driver to the Acromag carrier

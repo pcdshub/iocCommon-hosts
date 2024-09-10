@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Configure this host for gigE camera support
+# (Also supports jumbo BLD packets for spectrometer)
+source /reg/d/iocCommon/All/setup_gige.sh
+
+# Mount the appropriate EDT pdv directory
+#EDT_VER=R5.5.1.6
+EDT_VER=R5.5.5.4
+#EDT_VER=R5.5.8.2
+if [ ! -e /opt/EDTpdv/version -o "R`cat /opt/EDTpdv/version`" != "${EDT_VER}" ]
+then
+        mount --bind /reg/g/pcds/package/EDTpdv/${EDT_VER}/`uname -r` /opt/EDTpdv
+        mount --bind /reg/g/pcds/package/EDTpdv/${EDT_VER}/pdv        /opt/pdv
+fi
+if [ ! -e /dev/edt0 -a $UID -eq 0 ]
+then
+	# Install EDT driver on startup
+	# Must be run as root
+	echo Installing EDT driver
+	/opt/EDTpdv/edtinit.sh start
+fi
+
+/reg/g/pcds/pyps/config/tst/iocmanager/initIOC
+

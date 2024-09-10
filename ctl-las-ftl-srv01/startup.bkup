@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Setup PFTS network stuff
+# Network for PFTS EPICS interface
+ifconfig enp193s0f0 192.168.0.100 netmask 255.255.255.0 up
+
+# Network for Wavelink EPICS interfaces
+ifconfig enp193s0f2 192.168.2.100 netmask 255.255.255.0 up
+ifconfig enp193s0f3 192.168.1.50 netmask 255.255.255.0 up
+
+# Start up IOCs
+/cds/group/pcds/pyps/apps/ioc/latest/initIOC

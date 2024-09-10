@@ -13,7 +13,7 @@ then
 fi
 
 # Mount the appropriate EDT pdv directory
-EDT_VER=5.5.1.6
+EDT_VER=5.5.8.2
 if [ ! -e /opt/EDTpdv/version -o "`cat /opt/EDTpdv/version`" != "${EDT_VER}" ]
 then
     if [ -d /reg/g/pcds/package/EDTpdv/R${EDT_VER}/`uname -r` ]; then

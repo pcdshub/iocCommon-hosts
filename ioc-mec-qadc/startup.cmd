@@ -1,7 +1,9 @@
 #!/bin/sh
+# Not this one. :-)
+#echo Loading datadev module
+#insmod /reg/neh/home/weaver/aes-stream-drivers/data_dev/driver/datadev.ko.daq-tst-dev06 cfgSize=1114112 cfgRxCount=1024 cfgTxCount=4
 
-# QADC driver
-~mcbrowne/src/hsd/startup
-/reg/d/iocCommon/hosts/ioc-mec-qadc/qadc.setup
+sysctl -w fs.mqueue.msg_max=32
 
-/reg/g/pcds/pyps/apps/ioc/latest/initIOC
+export SLAC_AES_VER=v5.16.0
+source /reg/d/iocCommon/rhel7-x86_64/common/startup.cmd

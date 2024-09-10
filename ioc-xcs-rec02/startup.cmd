@@ -29,3 +29,7 @@ then
 fi
 
 /reg/g/pcds/pyps/apps/ioc/latest/initIOC
+
+
+# Configure host for gigE cameras
+source /reg/d/iocCommon/All/setup_gige.sh

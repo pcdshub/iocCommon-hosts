@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#/sbin/modprobe pgpcard
+#/usr/pgpcard/pgpcard
+#/usr/pgpcard/pgpcardG3
+
+
+
+# Load the pgpcard driver
+/cds/group/pcds/dist/pds/boot/pgp_load_module
+
+/cds/group/pcds/pyps/apps/ioc/latest/initIOC

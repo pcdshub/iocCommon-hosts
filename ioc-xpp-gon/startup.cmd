@@ -10,6 +10,10 @@ echo "Loaded modules:"
 sleep 1
 ls -l /dev | grep USB
 
+/sbin/rmmod arcus
+sleep 5
+/sbin/insmod /reg/g/pcds/package/epics/3.14/ioc/common/arcus/R1.0.0/driver/arcus.ko
+
 /reg/g/pcds/pyps/apps/ioc/latest/initIOC
 
 /reg/g/pcds/pkg_mgr/release/procServ/2.8.0-1.0.0/linux-x86_64/bin/procServ --allow --ignore ^D --coresize 0 -c /tmp -l 51000 51001 /bin/sh --noediting -f

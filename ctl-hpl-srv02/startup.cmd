@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Configure this host for gigE camera support
+# (Also supports jumbo BLD packets for spectrometer)
+#source /reg/d/iocCommon/All/setup_gige.sh
+
+## MCB - I should bug Omar about this, but for now...
+#mount --bind ~mcbrowne/src/uEye/rules.d /etc/udev/rules.d
+
+
+#
+# Add extra debugging for the uEye driver to the syslog.
+#
+mount --bind ~mcbrowne/src/uEye/rsyslog.conf /etc/rsyslog.conf
+service rsyslog stop
+service rsyslog start
+#
+# Until Omar fixes the udev rules!
+#
+#mount --bind ~mcbrowne/src/uEye/rules.d /etc/udev/rules.d
+mount --bind /cds/home/t/tjohnson/src/udev/rules.d /etc/udev/rules.d
+udevadm control --reload-rules
+
+#
+# Start the uEye driver and add debugging for it to the syslog.
+#
+/reg/g/pcds/package/external/ueye-4.91.1.0/setup.sh
+
+sleep 15
+udevadm trigger --subsystem-match=usb
+
+
+# QADC driver
+~mcbrowne/src/hsd/startup
+
+# Make QMINI happy (?)
+udevadm control --reload-rules
+udevadm trigger --subsystem-match=usb
+udevadm trigger --subsystem-match=tty
+
+# Setup PFTS network stuff
+# Bonded network for RFoF TX and RX units
+modprobe bonding mode=broadcast
+ifconfig bond0 192.168.1.10 netmask 255.255.255.0 up
+ifconfig enp5s0 down
+ip link set enp5s0 master bond0
+ifconfig enp7s0 down
+ip link set enp7s0 master bond0
+ifconfig enp8s0 down
+ip link set enp8s0 master bond0
+# Network for PFTS EPICS interface
+ifconfig enp10s0f1 192.168.0.100 netmask 255.255.255.0 up
+
+
+# PGPcard stuff!
+/sbin/modprobe pgpcard
+/usr/pgpcard/pgpcard
+/usr/pgpcard/pgpcardG3
+
+/reg/g/pcds/dist/pds/boot/datadev_load_module
+
+/reg/g/pcds/pyps/apps/ioc/latest/initIOC

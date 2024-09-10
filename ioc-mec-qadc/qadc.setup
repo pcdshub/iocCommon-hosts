@@ -1,0 +1,9 @@
+#!/bin/csh -x
+setenv LD_LIBRARY_PATH /cds/home/w/weaver/l2si/lib
+
+/cds/home/w/weaver/l2si/bin/hsd_init -d /dev/qadca -C
+/cds/home/w/weaver/l2si/bin/hsd_init -d /dev/qadca -X
+/cds/home/w/weaver/l2si/bin/hsd_init -d /dev/qadca -R
+/cds/home/w/weaver/l2si/bin/hsd_init -d /dev/qadca 
+# look for CSR      : 00000002 LinkUp LCLS
+/cds/home/w/weaver/l2si/bin/hsd_init -d /dev/qadca -T 0
