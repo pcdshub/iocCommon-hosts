@@ -15,6 +15,7 @@ fi
 # Mount the appropriate EDT pdv directory
 #EDT_VER=5.5.5.4
 EDT_VER=5.5.1.6
+#EDT_VER=5.6.7.0
 if [ ! -e /opt/EDTpdv/version -o "`cat /opt/EDTpdv/version`" != "${EDT_VER}" ]
 then
     if [ -d /reg/g/pcds/package/EDTpdv/R${EDT_VER}/`uname -r` -a    \
@@ -39,5 +40,8 @@ fi
 
 # The USD4 needs this writable! Kill old ones that might be owned by others
 rm -f /dev/shm/sem.Usb4-*
+
+# Fixes so unicast PV discovery works with multiple IOCs on a machine
+/cds/group/pcds/dist/pds/boot/epics-ca-unicast-fix.sh
 
 /reg/g/pcds/pyps/apps/ioc/latest/initIOC

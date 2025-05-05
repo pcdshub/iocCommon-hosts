@@ -14,4 +14,7 @@ chmod 666 /dev/uio0
 chmod 666 /sys/class/uio/uio0/device/config
 chmod 666 /sys/class/uio/uio0/device/resource2
 
+# fix that allows unicast addresses to be used when there is more than one IOC on a machine
+/cds/group/pcds/dist/pds/boot/epics-ca-unicast-fix.sh
+
 /reg/g/pcds/pyps/apps/ioc/latest/initIOC
